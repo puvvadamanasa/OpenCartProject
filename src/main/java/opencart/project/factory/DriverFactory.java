@@ -27,7 +27,7 @@ public class DriverFactory {
 		om = new OptionsManager(prop);
 		String browserName = prop.getProperty("browser");
 		highlight = prop.getProperty("highlight").trim();
-		String url = prop.getProperty("url").trim();
+		//String url = prop.getProperty("url").trim();
 		browserName = browserName.trim().toLowerCase();
 		System.out.println("Browser Name: "+browserName);
 		if(browserName.equalsIgnoreCase("chrome")) {
@@ -43,12 +43,12 @@ public class DriverFactory {
 			tldriver.set(new EdgeDriver(om.getEdgeOptions()));
 		}
 		else {
-			System.out.println("Please pass right browser name");
+			System.out.println("Please right browser");
 			throw new FrameWorkException("No browser");
 		}
 		getDriver().manage().deleteAllCookies();
 		getDriver().manage().window().maximize();
-		getDriver().get(url);
+		getDriver().get(prop.getProperty("url").trim());
 		return getDriver();
 	}
 	public synchronized static WebDriver getDriver() {
